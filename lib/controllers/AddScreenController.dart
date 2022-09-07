@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddScreenController extends GetxController {
@@ -11,10 +12,20 @@ class AddScreenController extends GetxController {
     'Finance',
   ];
   DateTime currentDate = DateTime.now();
+  TimeOfDay startTime = TimeOfDay.now();
+  TimeOfDay endTime = TimeOfDay.now();
 
   void setCurrentDate(d) {
     currentDate = d;
-    // update();
+    update();
+  } // c
+  void setStartTime(d) {
+    startTime = d;
+    update();
+  } // c
+  void setEndTime(d) {
+    endTime = d;
+     update();
   } // controller.update();
 
   var selectedIndex = 0;

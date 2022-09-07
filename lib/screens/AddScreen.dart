@@ -143,21 +143,15 @@ class AddScreen extends StatelessWidget {
                           Icons.calendar_today,
                           color: Colors.white,
                         ),
-                        onPressed: () {
-                          showGeneralDialog(
-                            context: context,
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    DatePickerDialog(
-                              firstDate: DateTime(2000),
-                              selectableDayPredicate: (d) {
-                                controller.setCurrentDate(d);
-                                return true;
-                              },
-                              initialDate: DateTime.now(),
-                              lastDate: DateTime(2023),
-                            ),
-                          );
+                        onPressed: () async {
+                        var a= (await showDatePicker(
+                            firstDate: DateTime(2000),
+
+                            initialDate: DateTime.now(),
+
+                            lastDate: DateTime(2023), context: context,
+                          ))!;
+                        controller.setCurrentDate(a);
                         },
                       )),
                 ]),
@@ -171,9 +165,22 @@ class AddScreen extends StatelessWidget {
                   Expanded(
                     child: AppTextField(
                       label: 'Start Time',
-                      value: '10:00 AM',
-                      suffix: Icon(Icons.keyboard_arrow_down_rounded,
-                          color: Get.theme.primaryColor, size: 30),
+                      value: controller.startTime.format(context),
+                      suffix: IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down_rounded,
+                          color: Get.theme.primaryColor, size: 30,),
+                        onPressed: ()async{
+                          var a= (await showTimePicker(
+
+
+                              initialTime: TimeOfDay.now(),
+
+                              context: context,
+                          ))!;
+                          controller.setStartTime(a);
+
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -182,11 +189,24 @@ class AddScreen extends StatelessWidget {
                   Expanded(
                     child: AppTextField(
                       label: 'End Time',
-                      value: '11:00 AM',
-                      suffix: Icon(Icons.keyboard_arrow_down_rounded,
-                          color: Get.theme.primaryColor, size: 30),
-                    ),
-                  ),
+                      value: controller.endTime.format(context),
+                      suffix: IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down_rounded,
+                          color: Get.theme.primaryColor, size: 30,),
+    onPressed: ()async{
+      var a= (await showTimePicker(
+
+
+          initialTime:controller.startTime,
+
+   context: context,
+      ))!;
+      controller.setStartTime(a);
+
+    },
+                      ),
+
+                  ),)
                 ]),
               ),
               SizedBox(

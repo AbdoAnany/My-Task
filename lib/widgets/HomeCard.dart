@@ -21,33 +21,47 @@ class HomeCard extends StatelessWidget {
         color: Colors.white,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(children: [
+          Row(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
             SizedBox(width: 30),
-            Icon(Icons.sort_sharp, size: 30),
+            Padding(
+              padding: const EdgeInsets.only(top:30.0),
+              child: Icon(Icons.sort_sharp, size: 30),
+            ),
             SizedBox(width: 20),
-            Image.asset(
-              AppAssets.notification,
-              width: 30,
+            Padding(
+              padding: const EdgeInsets.only(top:30.0),
+              child: Image.asset(
+                AppAssets.notification,
+                width: 30,
+              ),
             ),
             Spacer(),
             SizedBox(
-              height: 130,
-              width: 130,
+              height: MediaQuery.of(context).size.width*.35,
+              width: MediaQuery.of(context).size.width*.35,
               child: CustomPaint(
-                size: Size(130, (130 * 0.8562091503267973).toDouble()),
+                size: Size(MediaQuery.of(context).size.width*.35,
+                    (MediaQuery.of(context).size.width*.35 * 0.8562091503267973).toDouble()),
                 painter: RPSCustomPainter(),
                 child: Align(
                   alignment: Alignment(0.4, -0.4),
                   child:
-                      Icon(Icons.account_circle, color: Colors.white, size: 40),
+                      Icon(Icons.account_circle, color: Colors.white,
+                          size: 50),
                 ),
               ),
             ),
           ]),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(children: [
+            padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 0),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
               Text(
                 'My Task',
                 style: TextStyle(
